@@ -137,7 +137,7 @@ $(document).ready(function () {
                             <td>${s.date} at ${s.time}</td>
                             <td>$${totalPrice.toFixed(2)}</td>
                             <td>
-                                <button class="btn btn-danger btn-sm del-sess-btn" data-id="${s.id}"></button>
+                                <button class="btn btn-danger btn-sm del-sess-btn" data-id="${s.id}"> Delete</button>
                             </td>
                         </tr>
                     `);
@@ -258,7 +258,7 @@ $(document).ready(function () {
                         <td>$${totalPrice.toFixed(2)}</td>
                         <td>
                             <div class="action-btns">
-                                <button class="btn btn-danger btn-sm del-sess-btn" data-id="${s.id}"></button>
+                                <button class="btn btn-danger btn-sm del-sess-btn" data-id="${s.id}"> Delete</button>
                             </div>
                         </td>
                     </tr>
