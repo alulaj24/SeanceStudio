@@ -28,35 +28,24 @@
     </style>
 </head>
 <body>
-
-    <!-- Ambient Particles -->
     <div class="bg-particles">
         <div class="orb"></div>
         <div class="orb"></div>
         <div class="orb"></div>
     </div>
-
-    <!-- Navigation -->
     <nav class="nav-bar">
-        <a href="clients.html" class="nav-brand">✦ Séance Studio</a>
+        <a href="clients.html" class="nav-brand"> Séance Studio</a>
         <ul class="nav-links">
-            <li><a href="clients.html">🗂 Dashboard</a></li>
-            <li><a href="#" id="logoutBtn" class="nav-logout">↩ Logout</a></li>
+            <li><a href="clients.html"> Dashboard</a></li>
+            <li><a href="#" id="logoutBtn" class="nav-logout"> Logout</a></li>
         </ul>
     </nav>
-
-    <!-- Centered Form Layout -->
     <div class="page-container with-nav">
         <div class="glass-card" style="max-width: 700px;">
-
             <h1 class="card-title">Book a Session</h1>
             <p class="card-subtitle">Select your client and add services for today</p>
-
-            <div class="divider"><span>✦</span></div>
-
+            <div class="divider"><span></span></div>
             <form id="bookingForm" autocomplete="off">
-
-                <!-- Client Selection -->
                 <div class="session-info">
                     <div class="form-group" style="flex: 2;">
                         <label for="bookingClient">Client <span style="color: var(--rose);">*</span></label>
@@ -64,21 +53,16 @@
                             <option value="">— Select a Client —</option>
                         </select>
                     </div>
-
                     <div class="form-group" style="flex: 1;">
                         <label for="bookingDate">Date <span style="color: var(--rose);">*</span></label>
                         <input type="date" id="bookingDate" class="form-control" required>
                     </div>
-
                     <div class="form-group" style="flex: 1;">
                         <label for="bookingTime">Time <span style="color: var(--rose);">*</span></label>
                         <input type="time" id="bookingTime" class="form-control" required>
                     </div>
                 </div>
-
                 <div class="divider" style="margin: 10px 0 20px 0;"><span>Services</span></div>
-
-                <!-- Services Container -->
                 <div id="servicesContainer">
                     <div class="service-row">
                         <div class="form-group" style="flex: 2; margin-bottom: 0;">
@@ -96,39 +80,32 @@
                             <label>Price ($)</label>
                             <input type="number" class="form-control service-price" placeholder="0.00" step="0.01" required>
                         </div>
-                        <div style="width: 40px;"></div> <!-- Spacer for rows without remove button -->
+                        <div style="width: 40px;"></div> 
                     </div>
                 </div>
-
                 <div style="margin-bottom: 24px;">
                     <button type="button" id="addServiceBtn" class="btn btn-outline btn-sm" style="width: auto;">
                         ＋ Add Another Service
                     </button>
                 </div>
-
                 <div class="form-group">
                     <label for="bookingDescription">Session Notes / Description</label>
                     <textarea id="bookingDescription" class="form-control" placeholder="Any details for this entire session..."></textarea>
                 </div>
-
                 <div style="display: flex; gap: 12px; margin-top: 10px;">
                     <button type="submit" id="bookingBtn" class="btn btn-rose" style="flex: 2;">
-                        🔮 Book Session
+                         Book Session
                     </button>
                     <a href="manage-sessions.html" class="btn btn-outline" style="flex: 1;">
-                        📋 Manage
+                         Manage
                     </a>
                 </div>
-
                 <div class="form-footer mt-4" style="text-align: center;">
-                    <a href="clients.html" style="color: var(--text-muted); font-size: 0.9rem;">← Back to Dashboard</a>
+                    <a href="clients.html" style="color: var(--text-muted); font-size: 0.9rem;"> Back to Dashboard</a>
                 </div>
             </form>
-
         </div>
     </div>
-
-    <!-- jQuery CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="app.js"></script>
 </body>

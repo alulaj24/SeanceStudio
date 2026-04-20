@@ -8,27 +8,20 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- Ambient Particles -->
     <div class="bg-particles">
         <div class="orb"></div>
         <div class="orb"></div>
         <div class="orb"></div>
     </div>
-
-    <!-- Navigation -->
     <nav class="nav-bar">
-        <a href="clients.html" class="nav-brand">✦ Séance Studio</a>
+        <a href="clients.html" class="nav-brand"> Séance Studio</a>
         <ul class="nav-links">
-            <li><a href="clients.html">🗂 Dashboard</a></li>
-            <li><a href="#" id="logoutBtn" class="nav-logout">↩ Logout</a></li>
+            <li><a href="clients.html"> Dashboard</a></li>
+            <li><a href="#" id="logoutBtn" class="nav-logout"> Logout</a></li>
         </ul>
     </nav>
-
-    <!-- Sessions Management List -->
     <div class="page-container with-nav">
         <div class="glass-card extra-wide">
-
             <div class="page-header">
                 <div class="page-header-left">
                     <h1 class="card-title">Manage Sessions</h1>
@@ -36,17 +29,13 @@
                 </div>
                 <div>
                     <a href="booking.html" class="btn btn-primary" style="width:auto;">
-                        ✦ Book New Session
+                         Book New Session
                     </a>
                 </div>
             </div>
-
-            <!-- Search / Filter -->
             <div class="form-group mb-3">
-                <input type="text" id="sessionSearch" class="form-control" placeholder="🔍 Search sessions by client name or service...">
+                <input type="text" id="sessionSearch" class="form-control" placeholder=" Search sessions by client name or service...">
             </div>
-
-            <!-- Sessions Table -->
             <div class="table-wrapper">
                 <table class="client-table">
                     <thead>
@@ -59,29 +48,21 @@
                         </tr>
                     </thead>
                     <tbody id="sessionsTableBody">
-                        <!-- Rendered by JS -->
                     </tbody>
                 </table>
             </div>
-
             <div class="form-footer mt-3">
-                <a href="clients.html">← Back to Dashboard</a>
+                <a href="clients.html"> Back to Dashboard</a>
             </div>
-
         </div>
     </div>
-
-    <!-- Edit Session Modal -->
     <div class="modal-overlay" id="editSessionModal">
         <div class="modal-content">
             <button class="modal-close" id="closeSessionModal">&times;</button>
-
             <h2 class="card-title" style="font-size:1.5rem;">Edit Session</h2>
             <p class="card-subtitle">Update booking details</p>
-
             <form id="editSessionForm" autocomplete="off">
                 <input type="hidden" id="editSessionId">
-
                 <div class="form-group">
                     <label for="editSessionService">Service</label>
                     <select id="editSessionService" class="form-control" required>
@@ -92,7 +73,6 @@
                         <option value="Other">Other</option>
                     </select>
                 </div>
-
                 <div class="session-info">
                     <div class="form-group">
                         <label for="editSessionDate">Date</label>
@@ -103,20 +83,17 @@
                         <input type="time" id="editSessionTime" class="form-control" required>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label for="editSessionPrice">Price ($)</label>
                     <input type="number" id="editSessionPrice" class="form-control" step="0.01">
                 </div>
-
                 <div class="form-group">
                     <label for="editSessionDescription">Description</label>
                     <textarea id="editSessionDescription" class="form-control"></textarea>
                 </div>
-
                 <div style="display:flex; gap:12px;">
                     <button type="submit" class="btn btn-primary" style="flex:1;">
-                        ✦ Save Changes
+                         Save Changes
                     </button>
                     <button type="button" class="btn btn-outline modal-close">
                         Cancel
@@ -125,8 +102,6 @@
             </form>
         </div>
     </div>
-
-    <!-- jQuery CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="app.js"></script>
 </body>

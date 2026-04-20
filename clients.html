@@ -8,31 +8,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- Background Image — replace with your own image -->
     <div class="page-bg" style="background-image: url('images/home-bg.jpg');"></div>
-
-    <!-- Ambient Particles -->
     <div class="bg-particles">
         <div class="orb"></div>
         <div class="orb"></div>
         <div class="orb"></div>
     </div>
-
-    <!-- Navigation -->
     <nav class="nav-bar">
-        <a href="clients.html" class="nav-brand">✦ Séance Studio</a>
+        <a href="clients.html" class="nav-brand"> Séance Studio</a>
         <ul class="nav-links">
-            <li><a href="clients.html" class="active">🗂 Dashboard</a></li>
-            <li><a href="#" id="logoutBtn" class="nav-logout">↩ Logout</a></li>
+            <li><a href="clients.html" class="active"> Dashboard</a></li>
+            <li><a href="#" id="logoutBtn" class="nav-logout"> Logout</a></li>
         </ul>
     </nav>
-
-    <!-- Dashboard -->
     <div class="page-container with-nav">
         <div class="glass-card extra-wide">
-
-            <!-- Page Header -->
             <div class="page-header">
                 <div class="page-header-left">
                     <h1 class="card-title">Dashboard</h1>
@@ -40,18 +30,16 @@
                 </div>
                 <div style="display:flex; gap:10px; flex-wrap:wrap;">
                     <a href="register.html" class="btn btn-primary" style="width:auto;">
-                        ✦ New Client
+                         New Client
                     </a>
                     <a href="booking.html" class="btn btn-rose" style="width:auto;">
-                        📅 Book Session
+                         Book Session
                     </a>
                     <a href="manage-sessions.html" class="btn btn-outline" style="width:auto;">
-                        📋 Manage Sessions
+                         Manage Sessions
                     </a>
                 </div>
             </div>
-
-            <!-- Stats -->
             <div class="stats-bar">
                 <div class="stat-card">
                     <div class="stat-number" id="totalClients">0</div>
@@ -62,13 +50,10 @@
                     <div class="stat-label">Total Sessions</div>
                 </div>
             </div>
-
-            <!-- Client Directory Section -->
             <h2 style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--gold-light); margin-bottom:16px;">Client Directory</h2>
             <div class="form-group mb-3">
-                <input type="text" id="clientSearch" class="form-control" placeholder="🔍  Search clients by name, email, or phone...">
+                <input type="text" id="clientSearch" class="form-control" placeholder="  Search clients by name, email, or phone...">
             </div>
-
             <div class="table-wrapper" id="clientsTable">
                 <table class="client-table">
                     <thead>
@@ -82,13 +67,10 @@
                         </tr>
                     </thead>
                     <tbody id="clientsTableBody">
-                        <!-- Rendered by JS -->
                     </tbody>
                 </table>
             </div>
-
-            <!-- Upcoming Sessions Section -->
-            <div class="divider mt-3"><span>📅</span></div>
+            <div class="divider mt-3"><span></span></div>
             <h2 style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--gold-light); margin-bottom:16px;">Upcoming Sessions (Dashboard)</h2>
             <div class="table-wrapper">
                 <table class="client-table">
@@ -102,48 +84,37 @@
                         </tr>
                     </thead>
                     <tbody id="upcomingSessionsTableBody">
-                        <!-- Rendered by JS -->
                     </tbody>
                 </table>
             </div>
-
         </div>
     </div>
-
-    <!-- Edit Client Modal -->
     <div class="modal-overlay" id="editModal">
         <div class="modal-content">
             <button class="modal-close" id="closeEditModal">&times;</button>
-
             <h2 class="card-title" style="font-size:1.5rem;">Edit Client</h2>
             <p class="card-subtitle">Update client information</p>
-
             <form id="editClientForm" autocomplete="off">
                 <input type="hidden" id="editClientId">
-
                 <div class="form-group">
                     <label for="editClientName">Full Name</label>
                     <input type="text" id="editClientName" class="form-control" required>
                 </div>
-
                 <div class="form-group">
                     <label for="editClientEmail">Email</label>
                     <input type="email" id="editClientEmail" class="form-control">
                 </div>
-
                 <div class="form-group">
                     <label for="editClientPhone">Phone</label>
                     <input type="tel" id="editClientPhone" class="form-control" required>
                 </div>
-
                 <div class="form-group">
                     <label for="editClientNotes">Notes</label>
                     <textarea id="editClientNotes" class="form-control" rows="3"></textarea>
                 </div>
-
                 <div style="display:flex; gap:12px;">
                     <button type="submit" class="btn btn-primary" style="flex:1;">
-                        ✦ Save Changes
+                         Save Changes
                     </button>
                     <button type="button" class="btn btn-outline modal-close" style="flex:0.5;">
                         Cancel
@@ -152,8 +123,6 @@
             </form>
         </div>
     </div>
-
-    <!-- jQuery CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="app.js"></script>
 </body>

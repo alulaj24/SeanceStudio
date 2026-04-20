@@ -1,10 +1,4 @@
-/* ===================================================================
-   Séance Studio — Main Application Logic
-   =================================================================== */
-
 $(document).ready(function () {
-
-    // ───── Storage Helpers ─────
     const Storage = {
         get(key) {
             try { return JSON.parse(localStorage.getItem(key)) || null; } catch { return null; }
@@ -12,31 +6,25 @@ $(document).ready(function () {
         set(key, value) { localStorage.setItem(key, JSON.stringify(value)); },
         remove(key) { localStorage.removeItem(key); }
     };
-
-    // ───── Initialize Data ─────
     if (!Storage.get('clients')) Storage.set('clients', []);
     if (!Storage.get('sessions')) Storage.set('sessions', []);
     if (!Storage.get('users')) {
         Storage.set('users', [{ username: 'admin', password: 'admin123' }]);
     }
-
-    // ───── Toast Notifications ─────
     window.showToast = function (message, type = 'info') {
         let $container = $('.toast-container');
         if (!$container.length) {
             $('body').append('<div class="toast-container"></div>');
             $container = $('.toast-container');
         }
-        const icons = { success: '✓', error: '✗', info: '✦' };
-        const $toast = $(`<div class="toast ${type}"><span>${icons[type] || '✦'}</span><span>${message}</span></div>`);
+        const icons = { success: '', error: '', info: '' };
+        const $toast = $(`<div class="toast ${type}"><span>${icons[type] || ''}</span><span>${message}</span></div>`);
         $container.append($toast);
         setTimeout(() => {
             $toast.css('animation', 'toastOut 0.4s ease-in forwards');
             setTimeout(() => $toast.remove(), 400);
         }, 3000);
     };
-
-    // ───── Auth Helpers ─────
     window.isLoggedIn = function () { return Storage.get('loggedInUser') !== null; };
     window.requireAuth = function () {
         if (!isLoggedIn()) { window.location.href = 'index.html'; return false; }
@@ -44,15 +32,9 @@ $(document).ready(function () {
     };
     window.logout = function () { Storage.remove('loggedInUser'); window.location.href = 'index.html'; };
     window.generateId = function () { return '_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36); };
-
-    // ───── Modal Helpers ─────
     function closeAllModals() { $('.modal-overlay').removeClass('active'); }
     $(document).on('click', '.modal-close', function () { closeAllModals(); });
     $(document).on('click', '.modal-overlay', function (e) { if (e.target === this) closeAllModals(); });
-
-    // ===================================================================
-    //  LOGIN PAGE
-    // ===================================================================
     if ($('#loginForm').length) {
         if (isLoggedIn()) { window.location.href = 'clients.html'; return; }
         $('#loginForm').on('submit', function (e) {
@@ -66,10 +48,6 @@ $(document).ready(function () {
             } else { showToast('Invalid credentials', 'error'); }
         });
     }
-
-    // ===================================================================
-    //  REGISTER CLIENT PAGE
-    // ===================================================================
     if ($('#registerForm').length) {
         if (!requireAuth()) return;
         $('#registerForm').on('submit', function (e) {
@@ -90,23 +68,16 @@ $(document).ready(function () {
             setTimeout(() => { window.location.href = 'clients.html'; }, 800);
         });
     }
-
-    // ===================================================================
-    //  CLIENTS LIST / DASHBOARD PAGE
-    // ===================================================================
     if ($('#clientsTableBody').length || $('#upcomingSessionsTableBody').length) {
         if (!requireAuth()) return;
-
         function renderClients() {
             const clients = Storage.get('clients') || [];
             const sessions = Storage.get('sessions') || [];
             const $tbody = $('#clientsTableBody');
             if (!$tbody.length) return;
-
             $tbody.empty();
             $('#totalClients').text(clients.length);
             $('#totalSessions').text(sessions.length);
-
             clients.forEach(c => {
                 const clientSessions = sessions.filter(s => s.clientId === c.id);
                 let totalSpent = 0;
@@ -117,7 +88,6 @@ $(document).ready(function () {
                         totalSpent += parseFloat(s.price) || 0;
                     }
                 });
-
                 $tbody.append(`
                     <tr data-id="${c.id}">
                         <td>${c.name}</td>
@@ -127,30 +97,26 @@ $(document).ready(function () {
                         <td>${new Date(c.createdAt).toLocaleDateString()}</td>
                         <td>
                             <div class="action-btns">
-                                <button class="btn btn-outline btn-sm edit-client-btn" data-id="${c.id}">✎ Edit</button>
-                                <button class="btn btn-danger btn-sm delete-client-btn" data-id="${c.id}">✕ Delete</button>
+                                <button class="btn btn-outline btn-sm edit-client-btn" data-id="${c.id}"> Edit</button>
+                                <button class="btn btn-danger btn-sm delete-client-btn" data-id="${c.id}"> Delete</button>
                             </div>
                         </td>
                     </tr>
                 `);
             });
         }
-
         function renderUpcomingSessions() {
             const sessions = Storage.get('sessions') || [];
             const $tbody = $('#upcomingSessionsTableBody');
             if (!$tbody.length) return;
-
             $tbody.empty();
             const today = new Date();
             today.setHours(0, 0, 0, 0);
-
             const upcoming = sessions.filter(s => {
                 const [year, month, day] = s.date.split('-').map(Number);
                 const sDate = new Date(year, month - 1, day);
                 return sDate >= today;
             }).sort((a, b) => new Date(a.date + 'T' + a.time) - new Date(b.date + 'T' + b.time));
-
             if (upcoming.length === 0) {
                 $tbody.append('<tr><td colspan="5" class="text-center">No upcoming sessions</td></tr>');
             } else {
@@ -164,7 +130,6 @@ $(document).ready(function () {
                         serviceText = s.service;
                         totalPrice = parseFloat(s.price) || 0;
                     }
-
                     $tbody.append(`
                         <tr>
                             <td>${s.clientName}</td>
@@ -172,17 +137,15 @@ $(document).ready(function () {
                             <td>${s.date} at ${s.time}</td>
                             <td>$${totalPrice.toFixed(2)}</td>
                             <td>
-                                <button class="btn btn-danger btn-sm del-sess-btn" data-id="${s.id}">✕</button>
+                                <button class="btn btn-danger btn-sm del-sess-btn" data-id="${s.id}"></button>
                             </td>
                         </tr>
                     `);
                 });
             }
         }
-
         renderClients();
         renderUpcomingSessions();
-
         $(document).on('click', '.delete-client-btn', function () {
             const id = $(this).data('id');
             if (confirm('Delete client and all sessions?')) {
@@ -192,7 +155,6 @@ $(document).ready(function () {
                 renderUpcomingSessions();
             }
         });
-
         $(document).on('click', '.edit-client-btn', function () {
             const client = Storage.get('clients').find(c => c.id === $(this).data('id'));
             if (!client) return;
@@ -203,7 +165,6 @@ $(document).ready(function () {
             $('#editClientNotes').val(client.notes);
             $('#editModal').addClass('active');
         });
-
         $('#editClientForm').on('submit', function (e) {
             e.preventDefault();
             const clients = Storage.get('clients');
@@ -220,17 +181,12 @@ $(document).ready(function () {
             }
         });
     }
-
-    // ===================================================================
-    //  BOOKING PAGE
-    // ===================================================================
     if ($('#bookingForm').length) {
         if (!requireAuth()) return;
         const clients = Storage.get('clients') || [];
         const $select = $('#bookingClient');
         clients.forEach(c => $select.append(`<option value="${c.id}" data-phone="${c.phone}">${c.name}</option>`));
         $select.on('change', function () { $('#bookingPhone').val($(this).find(':selected').data('phone') || ''); });
-
         $('#addServiceBtn').on('click', function() {
             const row = `
                 <div class="service-row">
@@ -254,9 +210,7 @@ $(document).ready(function () {
             `;
             $('#servicesContainer').append(row);
         });
-
         $(document).on('click', '.remove-service', function() { $(this).parent().remove(); });
-
         $('#bookingForm').on('submit', function (e) {
             e.preventDefault();
             const services = [];
@@ -266,7 +220,6 @@ $(document).ready(function () {
                     price: $(this).find('.service-price').val()
                 });
             });
-
             const sessions = Storage.get('sessions') || [];
             sessions.push({
                 id: generateId(),
@@ -282,16 +235,11 @@ $(document).ready(function () {
             setTimeout(() => { window.location.href = 'clients.html'; }, 800);
         });
     }
-
-    // ===================================================================
-    //  MANAGE SESSIONS PAGE
-    // ===================================================================
     if ($('#sessionsTableBody').length) {
         if (!requireAuth()) return;
         function renderManageSessions() {
             let sessions = Storage.get('sessions') || [];
             sessions.sort((a, b) => new Date(a.date + 'T' + a.time) - new Date(b.date + 'T' + b.time));
-
             const $tbody = $('#sessionsTableBody');
             $tbody.empty();
             sessions.forEach(s => {
@@ -302,7 +250,6 @@ $(document).ready(function () {
                 } else {
                     totalPrice = parseFloat(s.price) || 0;
                 }
-
                 $tbody.append(`
                     <tr>
                         <td>${s.clientName}</td>
@@ -311,7 +258,7 @@ $(document).ready(function () {
                         <td>$${totalPrice.toFixed(2)}</td>
                         <td>
                             <div class="action-btns">
-                                <button class="btn btn-danger btn-sm del-sess-btn" data-id="${s.id}">✕</button>
+                                <button class="btn btn-danger btn-sm del-sess-btn" data-id="${s.id}"></button>
                             </div>
                         </td>
                     </tr>
@@ -320,7 +267,6 @@ $(document).ready(function () {
         }
         renderManageSessions();
     }
-
     $(document).on('click', '.del-sess-btn', function () {
         if (confirm('Delete session?')) {
             Storage.set('sessions', Storage.get('sessions').filter(s => s.id !== $(this).data('id')));
@@ -329,6 +275,5 @@ $(document).ready(function () {
             if (typeof renderClients === 'function') renderClients();
         }
     });
-
     $(document).on('click', '#logoutBtn', function (e) { e.preventDefault(); logout(); });
 });
