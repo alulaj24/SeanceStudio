@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Séance Studio — Mystical session management portal. Sign in to manage your clients and bookings.">
+    <title>Séance Studio — Sign In</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Split Layout: Image Left | Form Right -->
+    <div class="split-layout">
+
+        <!-- LEFT HALF — Background Image -->
+        <!-- To add your image: place it in the images/ folder and update the style below -->
+        <div class="split-image" style="background-image: url('images/login-bg.jpg');">
+            <div class="bg-particles">
+                <div class="orb"></div>
+                <div class="orb"></div>
+                <div class="orb"></div>
+            </div>
+            <div class="split-text">
+                <h2>Welcome to Séance Studio</h2>
+                <p>Lagjia 13, Death City, Durres</p>
+            </div>
+        </div>
+
+        <!-- RIGHT HALF — Login Form -->
+        <div class="split-content">
+            <div class="glass-card">
+
+                <div class="login-logo">
+                    <span class="crystal">🔮</span>
+                </div>
+
+                <h1 class="card-title">Séance Studio</h1>
+                <p class="card-subtitle">Enter your credentials to access the portal</p>
+
+                <div class="divider"><span>✦</span></div>
+
+                <form id="loginForm" autocomplete="off">
+                    <div class="form-group">
+                        <label for="loginUsername">Username</label>
+                        <input type="text" id="loginUsername" class="form-control" placeholder="Enter your username" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password" required>
+                    </div>
+
+                    <button type="submit" id="loginBtn" class="btn btn-primary">
+                        ✦ Sign In
+                    </button>
+                </form>
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- jQuery CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

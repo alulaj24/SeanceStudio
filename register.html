@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Register a new client for séance sessions. Add their details and photo.">
+    <title>Séance Studio — Register Client</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Ambient Particles -->
+    <div class="bg-particles">
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <a href="clients.html" class="nav-brand">✦ Séance Studio</a>
+        <ul class="nav-links">
+            <li><a href="clients.html">🗂 Dashboard</a></li>
+            <li><a href="#" id="logoutBtn" class="nav-logout">↩ Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Register Form -->
+    <div class="page-container with-nav">
+        <div class="glass-card">
+
+            <h1 class="card-title">Register New Client</h1>
+            <p class="card-subtitle">Add a new client to your mystical roster</p>
+
+            <div class="divider"><span>✦</span></div>
+
+            <form id="registerForm" autocomplete="off">
+
+
+                <div class="form-group">
+                    <label for="clientName">Full Name <span style="color: var(--rose);">*</span></label>
+                    <input type="text" id="clientName" class="form-control" placeholder="Enter client's full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="clientEmail">Email Address</label>
+                    <input type="email" id="clientEmail" class="form-control" placeholder="client@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="clientPhone">Phone Number <span style="color: var(--rose);">*</span></label>
+                    <input type="tel" id="clientPhone" class="form-control" placeholder="+1 (555) 000-0000" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="clientNotes">Notes</label>
+                    <textarea id="clientNotes" class="form-control" placeholder="Any special notes about the client..." rows="3"></textarea>
+                </div>
+
+                <button type="submit" id="registerBtn" class="btn btn-primary">
+                    ✦ Register Client
+                </button>
+
+                <div class="form-footer mt-2">
+                    <a href="clients.html">← Back to Client List</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <!-- jQuery CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
